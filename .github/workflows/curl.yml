@@ -26,6 +26,9 @@ jobs:
       - name: Copy Config
         uses: actions/checkout@v4
 
+      - name: Set current date as env variable
+        run: echo "NOW=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+
       - name: Curl
-        run:  curl -w "@curl-format.txt" -o /dev/null -s http://ipv4.download.thinkbroadband.com/${{matrix.size}}.zip
+        run:  curl -w "@curl-format.csv" -o /dev/null -s http://ipv4.download.thinkbroadband.com/${{matrix.size}}.zip > $NOW.csv
         
