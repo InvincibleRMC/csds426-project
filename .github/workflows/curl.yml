@@ -14,13 +14,18 @@ jobs:
     runs-on: ubuntu-latest
     strategy: 
       matrix:
-        threads: [1, 2, 4, 8, 16]
-        size: [15MB, 30MB, "500MB", "file-1GB", "files-5GB-zip"]
+        threads: [1]
+        # threads: [1, 2, 4, 8, 16]
+        # https://testfile.org/
+        size: [5MB, 10MB, 20MB, 50MB, 100MB, 200MB, 512MB, 1GB, 2GB, 5GB]
       
     steps:
       - name: Setup Curl
         run: sudo apt-get install curl
 
+      - name: Copy Config
+        uses: actions/checkout@v4
+
       - name: Curl
-        run: curl -v --trace-time https://link.testfile.org/${{matrix.size}}
+        run:  curl -w "@curl-format.txt" -o /dev/null -s http://ipv4.download.thinkbroadband.com/${{matrix.size}}.zip
         
