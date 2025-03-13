@@ -32,3 +32,4 @@ jobs:
       - name: Curl
         run:  curl -w "@curl-format.csv" -o /dev/null -s http://ipv4.download.thinkbroadband.com/${{matrix.size}}.zip > $NOW.csv
         
+      - run: cat $NOW.csv
