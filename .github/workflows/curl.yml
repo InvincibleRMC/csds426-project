@@ -18,6 +18,11 @@ jobs:
         # threads: [1, 2, 4, 8, 16]
         # https://testfile.org/
         size: [5MB, 10MB, 20MB, 50MB, 100MB, 200MB, 512MB, 1GB, 2GB, 5GB]
+
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.
+      contents: write
       
     steps:
       - name: Setup Curl
