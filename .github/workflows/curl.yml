@@ -32,6 +32,10 @@ jobs:
       - name: Copy Config
         uses: actions/checkout@v4
 
+      # Done since action/checkout keeps head frozen
+      - name: Git Pull
+        run: git pull
+
       - name: Set current date as env variable
         run: echo "CURR_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
