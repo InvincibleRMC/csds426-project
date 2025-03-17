@@ -49,4 +49,4 @@ jobs:
         with:
           commit_message: Uploading collected Data
         
-      - run: cat $NOW.csv
+      - run: cat data/$CURR_DATE/$CURR_TIME.csv
