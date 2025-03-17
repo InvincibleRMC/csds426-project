@@ -32,14 +32,10 @@ jobs:
       - name: Curl
         run:  curl -w "@curl-format.csv" -o /dev/null -s http://ipv4.download.thinkbroadband.com/${{matrix.size}}.zip > $NOW.csv
 
-      - uses: actions/upload-artifact@v4
+      # Commit all changed files back to the repository
+      - uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          # Name of the artifact to upload.
-          # Optional. Default is 'artifact'
-          name: $NOW
-      
-          # A file, directory or wildcard pattern that describes what to upload
-          # Required.
+          commit_message: Syncing losant status
           path: $NOW.csv
         
       - run: cat $NOW.csv
