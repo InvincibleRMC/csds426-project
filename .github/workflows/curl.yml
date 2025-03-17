@@ -38,6 +38,9 @@ jobs:
       - name: Set current time as env variable
         run: echo "CURR_TIME=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
 
+      - name : Make Current Day Directory
+        run: mkdir -p data/$CURR_DATE
+
       - name: Curl
         run:  curl -w "@curl-format.csv" -o /dev/null -s http://ipv4.download.thinkbroadband.com/${{matrix.size}}.zip > data/$CURR_DATE/$CURR_TIME.csv
 
