@@ -35,7 +35,6 @@ jobs:
       # Commit all changed files back to the repository
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: Syncing losant status
-          path: $NOW.csv
+          commit_message: Uploading collected Data
         
       - run: cat $NOW.csv
