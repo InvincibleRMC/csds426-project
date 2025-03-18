@@ -42,15 +42,18 @@ jobs:
       - name: Set current time as env variable
         run: echo "CURR_TIME=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
 
+      - name: Create File Name
+        run: echo "FILE_NAME="data/$CURR_DATE/$CURR_TIME|curl|thread_count_{{matrix.threads}}|file_size|{{matrix.size}}.csv
+
       - name : Make Current Day Directory
         run: mkdir -p data/$CURR_DATE
 
       - name: Curl
-        run:  curl -w "@curl-format.csv" -o /dev/null -s http://ipv4.download.thinkbroadband.com/${{matrix.size}}.zip > data/$CURR_DATE/$CURR_TIME.csv
+        run:  curl -w "@curl-format.csv" -o /dev/null -s http://ipv4.download.thinkbroadband.com/${{matrix.size}}.zip > FILE_NAME
 
       # Commit all changed files back to the repository
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Uploading collected Data
         
-      - run: cat data/$CURR_DATE/$CURR_TIME.csv
+      - run: cat FILE_NAME
