@@ -43,7 +43,7 @@ jobs:
         run: echo "CURR_TIME=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
 
       - name: Create File Name
-        run: echo "FILE_NAME="data/$CURR_DATE/$CURR_TIME|curl|thread_count_${{matrix.threads}}|file_size|${{matrix.size}}.csv
+        run: echo "FILE_NAME="data/$CURR_DATE/$CURR_TIME|curl|thread_count_\${{matrix.threads}}|file_size|\${{matrix.size}}.csv
 
       - name : Make Current Day Directory
         run: mkdir -p data/$CURR_DATE
