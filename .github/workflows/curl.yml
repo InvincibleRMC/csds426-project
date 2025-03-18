@@ -49,11 +49,11 @@ jobs:
         run: mkdir -p data/$CURR_DATE
 
       - name: Curl
-        run:  curl -w "@curl-format.csv" -o /dev/null -s http://ipv4.download.thinkbroadband.com/${{matrix.size}}.zip > FILE_NAME
+        run:  curl -w "@curl-format.csv" -o /dev/null -s http://ipv4.download.thinkbroadband.com/${{matrix.size}}.zip > $FILE_NAME
 
       # Commit all changed files back to the repository
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Uploading collected Data
         
-      - run: cat FILE_NAME
+      - run: cat $FILE_NAME
