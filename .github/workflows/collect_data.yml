@@ -58,6 +58,7 @@ jobs:
       - run: cat $FILE_NAME
 
   wget:
+    needs: curl
     name: Wget Thread Count=${{matrix.threads}} File=${{matrix.size}}
     runs-on: ubuntu-latest
     strategy: 
