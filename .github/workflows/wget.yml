@@ -1,4 +1,4 @@
-name: Curl Measurement
+name: Wget Measurement
 on: # this determines when this workflow is run
   push:
   #   pull_request:
@@ -8,8 +8,8 @@ on: # this determines when this workflow is run
   workflow_dispatch: # allow manually starting this workflow
 
 jobs:
-  curl:
-    name: Curl Thread Count=${{matrix.threads}} File=${{matrix.size}}
+  wget:
+    name: Wget Thread Count=${{matrix.threads}} File=${{matrix.size}}
     runs-on: ubuntu-latest
     strategy: 
       matrix:
@@ -25,8 +25,8 @@ jobs:
       contents: write
       
     steps:
-      - name: Setup Curl
-        run: sudo apt-get install curl
+      - name: Setup wget
+        run: sudo apt-get install wget
 
       - name: Copy Config
         uses: actions/checkout@v4
@@ -42,13 +42,13 @@ jobs:
         run: echo "CURR_TIME=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
 
       - name: Create File Name
-        run: echo "FILE_NAME=data/$CURR_DATE/$CURR_TIME|curl|thread_count_${{matrix.threads}}|file_size|${{matrix.size}}.csv" >> $GITHUB_ENV
+        run: echo "FILE_NAME=data/$CURR_DATE/$CURR_TIME|wget|thread_count_${{matrix.threads}}|file_size|${{matrix.size}}.txt" >> $GITHUB_ENV
 
       - name : Make Current Day Directory
         run: mkdir -p data/$CURR_DATE
 
-      - name: Curl
-        run:  curl -w "@curl-format.csv" -o /dev/null -s http://ipv4.download.thinkbroadband.com/${{matrix.size}}.zip > $FILE_NAME
+      - name: Wget
+        run:  "{ time wget http://ipv4.download.thinkbroadband.com/${{matrix.size}}.zip 2> /dev/null ; } 2> $FILE_NAME"
 
       # Commit all changed files back to the repository
       - uses: stefanzweifel/git-auto-commit-action@v5
