@@ -48,7 +48,7 @@ jobs:
         run: mkdir -p data/$CURR_DATE
 
       - name: Wget
-        run:  "{ time wget http://ipv4.download.thinkbroadband.com/${{matrix.size}}.zip 2> /dev/null ; } 2> $FILE_NAME"
+        run:  "{ time wget http://ipv4.download.thinkbroadband.com/${{matrix.size}}.zip -O /dev/null 2> /dev/null ; } 2> $FILE_NAME"
 
       # Commit all changed files back to the repository
       - uses: stefanzweifel/git-auto-commit-action@v5
