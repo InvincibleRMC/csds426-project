@@ -55,7 +55,7 @@ jobs:
         with:
           commit_message: Uploading collected Data
         
-      - run: cat $FILE_NAME
+      - run: cat $FILE_NAME.csv & cat $FILE_NAME.txt
 
   wget:
     needs: curl
