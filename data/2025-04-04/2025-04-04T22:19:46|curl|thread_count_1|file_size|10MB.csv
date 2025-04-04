@@ -1,0 +1,2 @@
+time_namelookup, time_connect, time_appconnect, time_pretransfer, time_redirect, time_starttransfer, time_total
+0.799769, 0.945367, 0.000000, 0.945400, 0.000000, 1.090798, 2.555377
