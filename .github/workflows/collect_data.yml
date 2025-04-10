@@ -1,10 +1,9 @@
 name: Curl Measurement
 on: # this determines when this workflow is run
-  push:
   #   pull_request:
   #   branches: [ master ] # when there is a pull request against master
   schedule: # uncomment to run periodically
-   - cron: '*/30 * * * *' # every day at 4 AM (UTC)
+   - cron: '0 * * * *' # every day at 4 AM (UTC)
   workflow_dispatch: # allow manually starting this workflow
 
 jobs:
