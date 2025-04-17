@@ -6,7 +6,7 @@ def generate_line(file: Path) -> str:
 
     split = filename.split('|')
 
-    parsed = f'{split[0]}, {split[1]}, {split[2].removeprefix('thread_count_')}, {split[4].removesuffix('.txt')}, '
+    parsed = f'{split[0]},{split[1]},{split[2].removeprefix('thread_count_')},{split[4].removesuffix('.txt')},'
 
     with file.open() as opened:
 
@@ -28,12 +28,12 @@ def generate_line(file: Path) -> str:
 
             time = int(min_secs[0]) * 60 + float(min_secs[1].replace('s', ''))
 
-            parsed += f'{time}, '
+            parsed += f'{time},'
             total_time += time
         
     return parsed + str(total_time) + '\n'
 
-HEADER = 'timestamp, type, thread_count, file_size, real, user, sys, total\n'
+HEADER = 'timestamp,type,thread_count,file_size,real,user,sys,total\n'
 
 walker = (Path.cwd() / 'data').walk()
 

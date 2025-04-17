@@ -1,2 +1,5 @@
 requests
 types-requests
+matplotlib
+pandas
+pandas-stubs
