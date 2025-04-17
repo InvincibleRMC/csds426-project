@@ -47,8 +47,8 @@ for attribute, measurement in penguin_means.items():
     multiplier += 1
 
 # Add some text for labels, title and custom x-axis tick labels, etc.
-ax.set_ylabel("Total Download Time (s)")
-ax.set_title("Data Download by type")
+ax.set_ylabel("Median Total Download Time (s)")
+ax.set_title("Data Download by Type")
 ax.set_xticks(x + width, species)
 ax.legend(loc="upper left", ncols=3)
 ax.set_ylim(0, 250)
