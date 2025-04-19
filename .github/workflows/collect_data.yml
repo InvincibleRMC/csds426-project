@@ -157,7 +157,7 @@ jobs:
       - run: cat $FILE_NAME
 
   python_jit:
-    needs: wget
+    needs: python
     name: Python Thread Count=${{matrix.threads}} File=${{matrix.size}}
     runs-on: ubuntu-latest
     strategy: 
