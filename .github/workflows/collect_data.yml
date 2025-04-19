@@ -156,5 +156,55 @@ jobs:
         
       - run: cat $FILE_NAME
 
-      # Parallel command
-      # Puppeteer?
+  python_jit:
+    needs: wget
+    name: Python Thread Count=${{matrix.threads}} File=${{matrix.size}}
+    runs-on: ubuntu-latest
+    strategy: 
+      matrix:
+        threads: [1]
+        # threads: [1, 2, 4, 8, 16]
+        # https://testfile.org/
+        size: [5MB, 10MB, 20MB, 50MB, 100MB, 200MB, 512MB, 1GB, 2GB, 5GB]
+      max-parallel: 1
+
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.
+      contents: write
+      
+    steps:
+      - name: Setup Python
+        run: sudo apt-get install python3-dev python3-requests
+
+      - name: Copy Config
+        uses: actions/checkout@v4
+
+      - name: Set current date as env variable
+        run: echo "CURR_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+      - name: Set current time as env variable
+        run: echo "CURR_TIME=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+
+      - name: Create File Name
+        run: echo "FILE_NAME=data/$CURR_DATE/$CURR_TIME|python_jit|thread_count_${{matrix.threads}}|file_size|${{matrix.size}}.txt" >> $GITHUB_ENV
+
+      - name : Make Current Day Directory
+        run: mkdir -p data/$CURR_DATE
+
+      - name: Python JIT
+        run:  python3 -c "import file_downloader"
+
+      - name: Python
+        run:  "{ time python3 file_downloader.py http://ipv4.download.thinkbroadband.com/${{matrix.size}}.zip -O /dev/null 2> /dev/null ; } 2> $FILE_NAME"
+
+      # Done since action/checkout keeps head frozen
+      - name: Git Pull
+        run: git pull
+
+      # Commit all changed files back to the repository
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Uploading collected Data
+        
+      - run: cat $FILE_NAME

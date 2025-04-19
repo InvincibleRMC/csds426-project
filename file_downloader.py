@@ -2,4 +2,5 @@ import sys
 
 import requests
 
-requests.get(sys.argv[1])
+if __name__ == "__main__":
+    requests.get(sys.argv[1])
