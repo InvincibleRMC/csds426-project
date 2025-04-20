@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-COLORS = {'curl': "blue", "python": "orange", "python_jit": "yellow", "wget": "red"}
+COLORS = {'curl': "blue", "python": "orange", "python_jit": "purple", "wget": "red"}
 
 def set_box_color(bp, color):
     plt.setp(bp['boxes'], color=color)

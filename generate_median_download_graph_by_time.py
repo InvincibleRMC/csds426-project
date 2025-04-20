@@ -21,8 +21,8 @@ data["timestamp"] = (
 
 print(data["timestamp"])
 
-STARTING_TIME_STAMP = datetime.datetime.fromisoformat("2025-04-03T00:00:00")
-ENDING_TIME_STAMP = datetime.datetime.fromisoformat("2025-04-11T00:00:00")
+# STARTING_TIME_STAMP = datetime.datetime.fromisoformat("2025-04-03T00:00:00")
+# ENDING_TIME_STAMP = datetime.datetime.fromisoformat("2025-04-11T00:00:00")
 
 species = range(25)
 

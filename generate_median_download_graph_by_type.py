@@ -8,17 +8,17 @@ data = pd.read_csv("output.csv")
 
 
 species = [
-    # "5MB",
-    # "10MB",
-    # "20MB",
-    # "50MB",
-    # "100MB",
-    # "200MB",
+    "5MB",
+    "10MB",
+    "20MB",
+    "50MB",
+    "100MB",
+    "200MB",
 
-    "512MB",
-    "1GB",
-    "2GB",
-    "5GB",
+    # "512MB",
+    # "1GB",
+    # "2GB",
+    # "5GB",
 ]
 
 penguin_means = {
@@ -53,7 +53,7 @@ ax.set_ylabel("Total Download Time (s)")
 ax.set_title("Data Download by Type")
 ax.set_xticks(x + WIDTH, species)
 ax.legend(loc="upper left", ncols=3)
-# ax.set_ylim(0, 20)
-ax.set_ylim(0, 450)
+ax.set_ylim(0, 20)
+# ax.set_ylim(0, 450)
 
 plt.show()
