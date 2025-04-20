@@ -52,9 +52,7 @@ fig, ax = plt.subplots(figsize=(20, 6))
 for attribute, measurement in penguin_means.items():
     offset = WIDTH * multiplier
     multiplier += 1
-    bpl = ax.boxplot(
-        measurement, positions=x + offset, widths=WIDTH, label=attribute
-    )
+    bpl = ax.boxplot(measurement, positions=x + offset, widths=WIDTH, label=attribute)
     set_box_color(bpl, COLORS[attribute])
 
 # Add some text for labels, title and custom x-axis tick labels, etc.

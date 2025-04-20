@@ -14,7 +14,6 @@ species = [
     "50MB",
     "100MB",
     "200MB",
-
     # "512MB",
     # "1GB",
     # "2GB",
@@ -44,7 +43,7 @@ for attribute, measurement in penguin_means.items():
     offset = WIDTH * multiplier
     multiplier += 1
     bpl = ax.boxplot(
-        measurement, positions=x + offset, sym='', widths=WIDTH, label=attribute
+        measurement, positions=x + offset, sym="", widths=WIDTH, label=attribute
     )
     set_box_color(bpl, COLORS[attribute])
 
