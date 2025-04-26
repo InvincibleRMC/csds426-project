@@ -6,8 +6,6 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 
-from common import COLORS, set_box_color
-
 
 matplotlib.rcParams.update({"font.size": 18})
 
@@ -33,17 +31,15 @@ keys = ["wget", "curl", "python"]
 
 penguin_means = {
     x: [
-        # round(
-        data.loc[data["type"] == x].loc[
-            data["timestamp"].between(row, species[index + 1])
-        ]["real"]
-        # .median()
-        # ,
-        #     2,
-        # )
+        round(
+            data.loc[data["timestamp"].between(row, species[index + 1])][
+                "real"
+            ].median(),
+            2,
+        )
         for index, row in enumerate(species[:-1])
     ]
-    for x in keys
+    for x in ["Data"]
 }
 
 
@@ -57,17 +53,14 @@ fig, ax = plt.subplots(figsize=(20, 6))
 for attribute, measurement in penguin_means.items():
     offset = WIDTH * multiplier
     multiplier += 1
-    bpl = ax.boxplot(
-        measurement, positions=x + offset, widths=WIDTH, sym="", label=attribute
-    )
-    set_box_color(bpl, COLORS[attribute])
+    bpl = ax.plot(x, measurement)
+    # set_box_color(bpl, COLORS[attribute])
 
 # Add some text for labels, title and custom x-axis tick labels, etc.
 ax.set_ylabel("Total Download Time for 5GB files (s)")
-ax.set_xlabel("1 Hour bins for each Type")
+ax.set_xlabel("1 Hour Bins")
 ax.set_title("Data Download by Time")
-ax.set_xticks(x + WIDTH, species[:-1])
-ax.legend(loc="upper left", ncols=3)
-ax.set_ylim(100, 450)
+ax.set_xticks(x, species[:-1])
+ax.set_ylim(160, 175)
 
 plt.show()
